@@ -20,14 +20,8 @@ type ComponentImportMap = {
 
 // Pre-define dynamic imports for ui components
 export const uiDynamicImports: ComponentImportMap = {
-  "registry/ui/hello-world/hello-world.tsx": dynamic(
-    () => import("@/registry/ui/hello-world/hello-world").then((mod) => mod.HelloWorld)
-  ),
-  "registry/ui/select/select.tsx": dynamic(
-    () => import("@/registry/ui/select/select").then((mod) => mod.AreaSelect)
-  ),
-  "registry/ui/tooltip-button/tooltip-button.tsx": dynamic(
-    () => import("@/registry/ui/tooltip-button/tooltip-button").then((mod) => mod.TooltipButton)
+  "registry/ui/switch-boolean/switch-boolean.tsx": dynamic(
+    () => import("@/registry/ui/switch-boolean/switch-boolean.preview").then((mod) => mod.SwitchBooleanPreview)
   ),
   "registry/ui/icon-boolean/icon-boolean.tsx": dynamic(
     () => import("@/registry/ui/icon-boolean/icon-boolean.preview").then((mod) => mod.IconBooleanPreview)

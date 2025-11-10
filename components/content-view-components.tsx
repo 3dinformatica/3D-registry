@@ -55,7 +55,6 @@ export default function ComponentContentView(props: ContentViewProps) {
 
         const body = await res.json();
         setFileContent(body.files?.at(0));
-        console.log(JSON.stringify(body.files?.at(0), null, 2));
       } catch (error) {
         console.error("Error fetching file:", error);
       }
@@ -116,29 +115,37 @@ export default function ComponentContentView(props: ContentViewProps) {
           </div>
         </ContentSection>
         <ContentSection id="usage" title="Usage">
-          <div className="flex flex-col gap-6">
-            {examples?.map((example) => (
-              <div key={example.title} className="flex flex-col gap-2">
-                <header className="flex gap-2 items-center justify-between">
-                  <section className="flex flex-col gap-0">
-                    <h4 className="text-sm font-semibold">{example.title}</h4>
-                    <p className="text-xs text-muted-foreground">
-                      {example.description}
-                    </p>
-                  </section>
-                  <CopyButton toCopy={example.code.trim()} />
-                </header>
-                <pre className="bg-accent rounded-md flex flex-col w-fit max-w-full">
-                  <code
-                    className="py-2 px-4 w-full font-mono text-sm whitespace-pre-wrap"
-                    lang="tsx"
-                  >
-                    {example.code.trim()}
-                  </code>
-                </pre>
-              </div>
-            ))}
-          </div>
+          {examples ? (
+            <div className="flex flex-col gap-6">
+              {examples.map((example) => (
+                <div key={example.title} className="flex flex-col gap-2">
+                  <header className="flex gap-2 items-center justify-between">
+                    <section className="flex flex-col gap-0">
+                      <h4 className="text-sm font-semibold">{example.title}</h4>
+                      <p className="text-xs text-muted-foreground">
+                        {example.description}
+                      </p>
+                    </section>
+                    <CopyButton toCopy={example.code.trim()} />
+                  </header>
+                  <pre className="bg-accent rounded-md flex flex-col w-fit max-w-full">
+                    <code
+                      className="py-2 px-4 w-full font-mono text-sm whitespace-pre-wrap"
+                      lang="tsx"
+                    >
+                      {example.code.trim()}
+                    </code>
+                  </pre>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col gap-2">
+              <p className="text-sm text-muted-foreground">
+                No examples available
+              </p>
+            </div>
+          )}
         </ContentSection>
       </section>
     </div>
