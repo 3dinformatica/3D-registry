@@ -29,6 +29,9 @@ export const uiDynamicImports: ComponentImportMap = {
   "registry/ui/tooltip-button/tooltip-button.tsx": dynamic(
     () => import("@/registry/ui/tooltip-button/tooltip-button").then((mod) => mod.TooltipButton)
   ),
+  "registry/ui/icon-boolean/icon-boolean.tsx": dynamic(
+    () => import("@/registry/ui/icon-boolean/icon-boolean.preview").then((mod) => mod.IconBooleanPreview)
+  ),
 };
 
 // Pre-define dynamic imports for block components

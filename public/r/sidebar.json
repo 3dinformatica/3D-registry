@@ -3,7 +3,7 @@
   "name": "sidebar",
   "type": "registry:block",
   "title": "Sidebar",
-  "description": "A collapsible side navigation panel for organizing content and navigation links",
+  "description": "A collapsible side navigation panel for organizing content and navigation links. Useful for providing a sidebar to the user.",
   "files": [
     {
       "path": "registry/block/sidebar/sidebar.tsx",

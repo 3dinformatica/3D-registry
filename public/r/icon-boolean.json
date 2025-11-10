@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon-boolean",
+  "type": "registry:ui",
+  "title": "Icon Boolean",
+  "description": "A boolean icon component that displays a check or cross icon based on a boolean value. Supports different sizes, variants, and fallback states for null/undefined values.",
+  "dependencies": [
+    "lucide-react",
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/icon-boolean/icon-boolean.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { CircleCheck, CircleX } from \"lucide-react\";\nimport { cva } from \"class-variance-authority\";\nimport type { VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\nconst booleanIconVariants = cva(\"\", {\n  variants: {\n    size: {\n      sm: \"size-4\",\n      base: \"size-5\",\n      lg: \"size-6\",\n    },\n    variant: {\n      success: \"text-green-500\",\n      error: \"text-red-500\",\n      muted: \"text-muted-foreground\",\n    },\n  },\n  defaultVariants: {\n    size: \"sm\",\n  },\n});\n\nexport interface BooleanIconProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof booleanIconVariants> {\n  value?: boolean | null | undefined;\n  showFallback?: boolean;\n  fallbackText?: string;\n}\n\nfunction BooleanIcon({\n  value,\n  size,\n  variant,\n  className,\n  showFallback = true,\n  fallbackText = \"-\",\n  ...props\n}: BooleanIconProps) {\n  if (value === undefined || value === null) {\n    if (!showFallback) return null;\n    return (\n      <span\n        className={cn(\"text-muted-foreground\", className)}\n        data-slot=\"boolean-icon-fallback\"\n        {...props}\n      >\n        {fallbackText}\n      </span>\n    );\n  }\n\n  const iconVariant = value ? variant || \"success\" : variant || \"error\";\n\n  return value ? (\n    <CircleCheck\n      data-slot=\"boolean-icon-success\"\n      className={cn(\n        booleanIconVariants({ size, variant: iconVariant }),\n        className\n      )}\n    />\n  ) : (\n    <CircleX\n      data-slot=\"boolean-icon-error\"\n      className={cn(\n        booleanIconVariants({ size, variant: iconVariant }),\n        className\n      )}\n    />\n  );\n}\n\nexport { BooleanIcon, booleanIconVariants };\n",
+      "type": "registry:ui",
+      "target": "components/area/ui/icon-boolean.tsx"
+    }
+  ]
+}

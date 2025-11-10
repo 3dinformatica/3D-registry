@@ -3,7 +3,7 @@
   "name": "tooltip-button",
   "type": "registry:ui",
   "title": "Tooltip Button",
-  "description": "Tooltip Button component",
+  "description": "A button component with a tooltip that appears on hover, combining the functionality of a button with additional explanatory text that helps users understand its purpose. Useful for providing context without cluttering the interface.",
   "dependencies": [
     "button",
     "tooltip"

@@ -3,7 +3,7 @@
   "name": "select",
   "type": "registry:ui",
   "title": "Select",
-  "description": "Select component",
+  "description": "A select component that allows users to choose an option from a list of options. Useful for providing a list of options to the user.",
   "files": [
     {
       "path": "registry/ui/select/select.tsx",

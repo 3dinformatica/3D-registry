@@ -72,13 +72,13 @@ export default function ComponentsPage() {
           />
         </Accordion>
       </div>
-      <div className="h-full flex flex-[5] flex-col gap-6 overflow-hidden">
+      <div className="h-full flex flex-5 flex-col gap-6 overflow-hidden">
         <RegistryBreadcrumb />
         <div className="overflow-y-auto flex-1">
           <ComponentContentView registryItem={selectedItem} />
         </div>
       </div>
-      <div className="h-full flex flex-1 flex-col gap-2">
+      <div key={'anchors'} className="h-full flex flex-1 flex-col gap-2">
         <h3>On this page</h3>
         <nav className="flex flex-col gap-1">
           <SectionTile
