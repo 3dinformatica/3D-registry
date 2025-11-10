@@ -38,14 +38,21 @@ export default function CopyButton(props: CopyButtonProps) {
       size="icon"
       onClick={handleCopy}
       className={cn(
-        "size-5 p-0 rounded-sm transition-all duration-300 ease-in-out text-muted-foreground hover:bg-accent-foreground cursor-pointer",
-        copied && "bg-foreground/30 text-foreground hover:bg-foreground/40"
+        "flex flex-row items-center justify-center size-5.5 p-0 rounded-sm transition-all duration-300 ease-in-out text-muted-foreground hover:bg-accent cursor-pointer",
+        copied &&
+          "w-fit gap-0.5 px-1.5 bg-green-100 text-green-500 hover:bg-green-100 hover:text-green-500"
       )}
     >
-      <div className="relative w-3 h-3">
-        <Check className={cn("size-3 absolute transition-all duration-300 ease-in-out", copied ? "opacity-100 scale-100" : "opacity-0 scale-50")} />
-        <Copy className={cn("size-3 absolute transition-all duration-300 ease-in-out", copied ? "opacity-0 scale-50" : "opacity-100 scale-100")} />
-      </div>
+
+        {copied ? (
+          <Check
+            className={"size-3 transition-all duration-300 ease-in-out"}
+          />
+        ) : (
+          <Copy className={"size-3 transition-all duration-300 ease-in-out"} />
+        )}
+        {copied && <span className="text-xs">Copied</span>}
+
     </Button>
   );
 }

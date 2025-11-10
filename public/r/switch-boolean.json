@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-boolean",
+  "type": "registry:ui",
+  "title": "Switch Boolean",
+  "description": "A boolean switch component that displays a switch based on a boolean value. Supports different sizes, variants, and fallback states for null/undefined values.",
+  "dependencies": [
+    "lucide-react",
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/switch-boolean/switch-boolean.tsx",
+      "content": "import { Switch } from \"@/components/ui/switch\";\n\ninterface BooleanSwitchProps {\n  label?: string;\n  checked: boolean;\n  onCheckedChange: (checked: boolean) => void;\n}\n\nexport function BooleanSwitch(props: BooleanSwitchProps) {\n  const { label = \"Disable\", checked, onCheckedChange } = props;\n\n  return (\n    <div\n      onClick={() => onCheckedChange(!checked)}\n      className=\"bg-accent/20 flex items-center gap-2 rounded-md border px-2 py-1.5\"\n    >\n      <p className=\"text-sm font-normal\">{label}</p>\n      <Switch checked={checked} onCheckedChange={onCheckedChange} />\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/area/ui/switch-boolean.tsx"
+    }
+  ]
+}

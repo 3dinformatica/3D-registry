@@ -3,7 +3,7 @@
   "name": "navbar",
   "type": "registry:block",
   "title": "Navbar",
-  "description": "A responsive navigation bar component with customizable icon and content sections",
+  "description": "A responsive navigation bar component with customizable icon and content sections. Useful for providing a navigation bar to the user.",
   "dependencies": [
     "next",
     "react",

@@ -1,12 +1,12 @@
 "use client";
 
 import { RegistryItem, RegistryItemFile } from "@/lib/schema";
-import { extractImports, extractJSX } from "@/lib/utils";
+import { loadComponentExamples } from "@/lib/utils";
 import CopyButton from "./button-copy";
 import { useMemo, useState, useEffect } from "react";
-import React from "react";
 import { uiDynamicImports, blockDynamicImports } from "@/lib/import-management";
 import ContentSection from "./content-view-section";
+import { ExampleContainer } from "@/registry/ui/icon-boolean/icon-boolean.examples";
 
 interface ContentViewProps {
   registryItem: RegistryItem | null;
@@ -15,6 +15,7 @@ interface ContentViewProps {
 export default function ComponentContentView(props: ContentViewProps) {
   const { registryItem } = props;
   const [fileContent, setFileContent] = useState<RegistryItemFile | null>(null);
+  const [examples, setExamples] = useState<ExampleContainer[] | null>(null);
 
   const component = useMemo(() => {
     if (!registryItem) return null;
@@ -54,13 +55,19 @@ export default function ComponentContentView(props: ContentViewProps) {
 
         const body = await res.json();
         setFileContent(body.files?.at(0));
-        console.log(JSON.stringify(body.files?.at(0), null, 2));
       } catch (error) {
         console.error("Error fetching file:", error);
       }
     };
 
     fetchFile();
+
+    // Load examples if available
+    if (registryItem.name) {
+      loadComponentExamples(registryItem.name).then((loadedExamples) => {
+        setExamples(loadedExamples);
+      });
+    }
   }, [registryItem]);
 
   if (!registryItem) return null;
@@ -108,26 +115,37 @@ export default function ComponentContentView(props: ContentViewProps) {
           </div>
         </ContentSection>
         <ContentSection id="usage" title="Usage">
-          <pre className="bg-accent/60 rounded-md flex flex-col w-fit max-w-full">
-            <section className="flex gap-2 items-center justify-between border-b py-2 px-4">
-              <p className="text-sm text-muted-foreground">Imports</p>
-              <CopyButton toCopy={extractImports(fileContent?.content ?? "")} />
-            </section>
-            <code lang="tsx" className="py-2 px-4">
-              {fileContent
-                ? extractImports(fileContent.content)
-                : "No imports found"}
-            </code>
-          </pre>
-          <pre className="bg-accent/60 rounded-md flex flex-col w-fit max-w-full">
-            <section className="flex gap-2 items-center justify-between border-b py-2 px-4">
-              <p className="text-sm text-muted-foreground">Content</p>
-              <CopyButton toCopy={fileContent?.content ?? ""} />
-            </section>
-            <code className="py-2 px-4 w-full font-mono text-sm" lang="tsx">
-              {fileContent ? extractJSX(fileContent.content) : "Loading..."}
-            </code>
-          </pre>
+          {examples ? (
+            <div className="flex flex-col gap-6">
+              {examples.map((example) => (
+                <div key={example.title} className="flex flex-col gap-2">
+                  <header className="flex gap-2 items-center justify-between">
+                    <section className="flex flex-col gap-0">
+                      <h4 className="text-sm font-semibold">{example.title}</h4>
+                      <p className="text-xs text-muted-foreground">
+                        {example.description}
+                      </p>
+                    </section>
+                    <CopyButton toCopy={example.code.trim()} />
+                  </header>
+                  <pre className="bg-accent rounded-md flex flex-col w-fit max-w-full">
+                    <code
+                      className="py-2 px-4 w-full font-mono text-sm whitespace-pre-wrap"
+                      lang="tsx"
+                    >
+                      {example.code.trim()}
+                    </code>
+                  </pre>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col gap-2">
+              <p className="text-sm text-muted-foreground">
+                No examples available
+              </p>
+            </div>
+          )}
         </ContentSection>
       </section>
     </div>

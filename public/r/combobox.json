@@ -3,7 +3,7 @@
   "name": "combobox",
   "type": "registry:block",
   "title": "Combobox",
-  "description": "A searchable dropdown component that allows selecting from a list of items with keyboard navigation and filtering capabilities",
+  "description": "A searchable dropdown component that allows selecting from a list of items with keyboard navigation and filtering capabilities. Useful for providing a combobox to the user.",
   "dependencies": [
     "combobox",
     "popover"
