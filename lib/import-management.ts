@@ -30,6 +30,9 @@ export const uiDynamicImports: ComponentImportMap = {
 
 // Pre-define dynamic imports for block components
 export const blockDynamicImports: ComponentImportMap = {
+  "registry/block/sheet/sheet.tsx": dynamic(
+    () => import("@/registry/block/sheet/sheet.preview").then((mod) => mod.SheetPreview)
+  ),
   "registry/block/navbar/navbar.tsx": dynamic(
     () => import("@/registry/block/navbar/navbar").then((mod) => mod.Navbar)
   ),

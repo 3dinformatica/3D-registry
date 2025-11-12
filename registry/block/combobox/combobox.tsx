@@ -15,14 +15,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { PersistableEntity } from "@/registry/lib/utils/persistable-entity/persistable-entity";
 
-export type PersistableEntity = {
-  id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  disabledAt?: Date | null | undefined;
-  extra?: Record<string, string> | null | undefined;
-};
+
 
 /* DEFAULT VALUES FOR EXAMPLE PURPOSES */
 interface MockOption extends PersistableEntity {

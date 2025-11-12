@@ -37,6 +37,25 @@
       ]
     },
     {
+      "name": "sheet",
+      "type": "registry:block",
+      "title": "Sheet",
+      "description": "A modal dialog that slides in from the bottom of the screen. Useful for providing a sheet to the user.",
+      "dependencies": [
+        "sheet",
+        "button",
+        "separator",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "type": "registry:block",
+          "path": "registry/block/sheet/sheet.tsx",
+          "target": "components/area/block/sheet.tsx"
+        }
+      ]
+    },
+    {
       "name": "navbar",
       "type": "registry:block",
       "title": "Navbar",
@@ -106,6 +125,22 @@
       ]
     },
     {
+      "name": "persistable-entity",
+      "type": "registry:lib",
+      "title": "Persistable Entity",
+      "description": "A schema for a persistable entity. Includes id, disabledAt, createdAt, and updatedAt fields. Useful for creating entities that can be persisted to a database.",
+      "dependencies": [
+        "zod"
+      ],
+      "files": [
+        {
+          "type": "registry:lib",
+          "path": "registry/lib/utils/persistable-entity/persistable-entity.ts",
+          "target": "lib/utils/persistable-entity.ts"
+        }
+      ]
+    },
+    {
       "name": "util-date-formatters",
       "type": "registry:lib",
       "title": "Date Formatters Utility",
@@ -114,7 +149,7 @@
       "files": [
         {
           "type": "registry:lib",
-          "path": "registry/utils/util-date-formatters/util-date-formatters.ts",
+          "path": "registry/lib/utils/util-date-formatters/util-date-formatters.ts",
           "target": "lib/utils/util-date-formatters.ts"
         }
       ]
@@ -124,11 +159,13 @@
       "type": "registry:lib",
       "title": "Schema Fields Utility",
       "description": "A utility functions to categorize schema fields by their data type, returning an object with the fields grouped by type and returning the default values for the fields. Useful for dynamic form generation and schema analysis.",
-      "dependencies": [],
+      "dependencies": [
+        "zod"
+      ],
       "files": [
         {
           "type": "registry:lib",
-          "path": "registry/utils/util-categorize-schema-fields/util-categorize-schema-fields.ts",
+          "path": "registry/lib/utils/util-categorize-schema-fields/util-categorize-schema-fields.ts",
           "target": "lib/utils/util-categorize-schema-fields.ts"
         }
       ]
