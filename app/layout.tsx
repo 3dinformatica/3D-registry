@@ -17,9 +17,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "3D Informatica UI Registry",
   description: "3D Informatica UI Registry",
-  icons: {
-    icon: "/3d-registry/favicon.ico",
-  },
 };
 
 export default function RootLayout({
