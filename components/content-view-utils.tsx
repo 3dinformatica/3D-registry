@@ -6,11 +6,11 @@ import ContentSection from "./content-view-section";
 import { useState, useEffect } from "react";
 import React from "react";
 
-interface HooksContentViewProps {
+interface UtilityContentViewProps {
   registryItem: RegistryItem | null;
 }
 
-export default function HooksContentView(props: HooksContentViewProps) {
+export default function UtilityContentView(props: UtilityContentViewProps) {
   const { registryItem } = props;
   const [fileContent, setFileContent] = useState<RegistryItemFile | null>(null);
 
@@ -32,7 +32,6 @@ export default function HooksContentView(props: HooksContentViewProps) {
 
         const body = await res.json();
         setFileContent(body.files?.at(0));
-        console.log(JSON.stringify(body.files?.at(0), null, 2));
       } catch (error) {
         console.error("Error fetching file:", error);
       }
@@ -48,6 +47,10 @@ export default function HooksContentView(props: HooksContentViewProps) {
       ? `http://localhost:3000/r/${registryItem.name}.json`
       : `https://3dinformatica.github.io/registry/r/${registryItem.name}.json`
   }`;
+
+  // Extract the code content
+  const codeContent =
+    fileContent?.content?.replace(/\\n/g, "\n") || "Loading...";
 
   return (
     <div className="flex flex-col gap-10 pb-20 items-start h-fit overflow-y-auto flex-1">
@@ -79,6 +82,20 @@ export default function HooksContentView(props: HooksContentViewProps) {
                 ))
               : "Loading..."}
           </div>
+        </ContentSection>
+        <ContentSection id="code" title="Code">
+          <pre className="bg-accent/60 rounded-md flex flex-col w-fit max-w-full">
+            <section className="flex gap-2 items-center justify-between border-b py-2 px-4">
+              <p className="text-sm text-muted-foreground">Utility Function</p>
+              <CopyButton toCopy={codeContent} />
+            </section>
+            <code
+              className="py-2 px-4 w-full font-mono text-sm whitespace-pre-wrap"
+              lang="ts"
+            >
+              {codeContent}
+            </code>
+          </pre>
         </ContentSection>
       </section>
     </div>

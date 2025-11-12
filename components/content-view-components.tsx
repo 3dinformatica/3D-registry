@@ -72,18 +72,19 @@ export default function ComponentContentView(props: ContentViewProps) {
 
   if (!registryItem) return null;
 
+  const { dependencies, title, description, name } = registryItem;
   const installationCmd = `pnpm dlx shadcn@latest add ${
     process.env.NODE_ENV === "development"
-      ? `http://localhost:3000/r/${registryItem.name}.json`
-      : `https://3dinformatica.github.io/registry/r/${registryItem.name}.json`
+      ? `http://localhost:3000/r/${name}.json`
+      : `https://3dinformatica.github.io/registry/r/${name}.json`
   }`;
 
   return (
-    <div className="flex flex-col gap-6 pb-20 items-start h-fit overflow-y-auto flex-1">
-      <h1>{registryItem.title}</h1>
+    <div className="flex flex-col gap-10 pb-20 items-start h-fit overflow-y-auto flex-1">
+      <h1>{title}</h1>
       <section className="flex flex-col gap-10 w-full h-fit mb-[60%]">
         <ContentSection id="description" title="Description">
-          <p>{registryItem.description}</p>
+          <p>{description}</p>
         </ContentSection>
         <ContentSection id="preview" title="Preview">
           <div className="flex w-full h-full items-center justify-center border-dashed border rounded-sm p-10">
@@ -97,6 +98,19 @@ export default function ComponentContentView(props: ContentViewProps) {
             </code>
             <CopyButton toCopy={installationCmd} />
           </pre>
+        </ContentSection>
+        <ContentSection id="dependencies" title="Dependencies">
+          <div className="flex flex-wrap gap-2">
+            {dependencies && dependencies.length > 0 ? dependencies.map((dep) => (
+              <pre key={dep} className="bg-accent rounded-md px-1 py-0.5">
+                {dep}
+              </pre>
+            )) : (
+              <p className="text-sm text-muted-foreground">
+                No dependencies found
+              </p>
+            )}
+          </div>
         </ContentSection>
         <ContentSection id="destination" title="Destination">
           <div className="flex gap-2 items-center">
@@ -147,6 +161,7 @@ export default function ComponentContentView(props: ContentViewProps) {
             </div>
           )}
         </ContentSection>
+        
       </section>
     </div>
   );

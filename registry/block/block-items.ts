@@ -2,6 +2,20 @@ import { RegistryItem } from "../../lib/schema";
 
 export const BlockItems: RegistryItem[] = [
   {
+    name: "sheet",
+    type: "registry:block",
+    title: "Sheet",
+    description: "A modal dialog that slides in from the bottom of the screen. Useful for providing a sheet to the user.",
+    dependencies: ["sheet", "button", "separator", "lucide-react"],
+    files: [
+      {
+        type: "registry:block",
+        path: "registry/block/sheet/sheet.tsx",
+        target: "components/area/block/sheet.tsx",
+      },
+    ],
+  },
+  {
     name: "navbar",
     type: "registry:block",
     title: "Navbar",

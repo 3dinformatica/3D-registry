@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "persistable-entity",
+  "type": "registry:lib",
+  "title": "Persistable Entity",
+  "description": "A schema for a persistable entity. Includes id, disabledAt, createdAt, and updatedAt fields. Useful for creating entities that can be persisted to a database.",
+  "dependencies": [
+    "zod"
+  ],
+  "files": [
+    {
+      "path": "registry/lib/utils/persistable-entity/persistable-entity.ts",
+      "content": "import { z } from \"zod\";\n\nexport const PersistableEntitySchema = z.object({\n    id: z.uuid().nullish(),\n    disabledAt: z.date().nullish(),\n    createdAt: z.date().nullish(),\n    updatedAt: z.date().nullish(),\n  });\n\nexport type PersistableEntity = z.infer<typeof PersistableEntitySchema>;\n\n",
+      "type": "registry:lib",
+      "target": "lib/utils/persistable-entity.ts"
+    }
+  ]
+}

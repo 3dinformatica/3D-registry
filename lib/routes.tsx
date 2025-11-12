@@ -19,4 +19,10 @@ export const appRoutes: AppRouteItem[] = [
     title: "Hooks",
     description: "A collection of reusable hooks for managing state and effects",
   },
+  { 
+    id: 3,
+    href: "/utilities",
+    title: "Utilities",
+    description: "A collection of utility functions that can be used across multiple projects",
+  },
 ];
