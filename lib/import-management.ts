@@ -34,13 +34,13 @@ export const blockDynamicImports: ComponentImportMap = {
     () => import("@/registry/block/sheet/sheet.preview").then((mod) => mod.SheetPreview)
   ),
   "registry/block/navbar/navbar.tsx": dynamic(
-    () => import("@/registry/block/navbar/navbar").then((mod) => mod.Navbar)
+    () => import("@/registry/block/navbar/navbar.preview").then((mod) => mod.NavbarPreview)
   ),
   "registry/block/combobox/combobox.tsx": dynamic(
-    () => import("@/registry/block/combobox/combobox").then((mod) => mod.default)
+    () => import("@/registry/block/combobox/combobox.preview").then((mod) => mod.ComboboxPreview)
   ),
   "registry/block/sidebar/sidebar.tsx": dynamic(
-    () => import("@/registry/block/sidebar/sidebar").then((mod) => mod.default)
+    () => import("@/registry/block/sidebar/sidebar.preview").then((mod) => mod.SidebarPreview)
   ),
  
 };

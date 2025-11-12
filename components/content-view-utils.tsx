@@ -49,10 +49,11 @@ export default function UtilityContentView(props: UtilityContentViewProps) {
   }`;
 
   // Extract the code content
-  const codeContent = fileContent?.content?.replace(/\\n/g, "\n") || "Loading...";
+  const codeContent =
+    fileContent?.content?.replace(/\\n/g, "\n") || "Loading...";
 
   return (
-    <div className="flex flex-col gap-6 pb-20 items-start h-fit overflow-y-auto flex-1">
+    <div className="flex flex-col gap-10 pb-20 items-start h-fit overflow-y-auto flex-1">
       <h1>{registryItem.title}</h1>
       <section className="flex flex-col gap-10 w-full h-fit mb-[70%]">
         <ContentSection id="description" title="Description">
@@ -88,7 +89,10 @@ export default function UtilityContentView(props: UtilityContentViewProps) {
               <p className="text-sm text-muted-foreground">Utility Function</p>
               <CopyButton toCopy={codeContent} />
             </section>
-            <code className="py-2 px-4 w-full font-mono text-sm whitespace-pre-wrap" lang="ts">
+            <code
+              className="py-2 px-4 w-full font-mono text-sm whitespace-pre-wrap"
+              lang="ts"
+            >
               {codeContent}
             </code>
           </pre>
@@ -97,4 +101,3 @@ export default function UtilityContentView(props: UtilityContentViewProps) {
     </div>
   );
 }
-

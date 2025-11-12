@@ -50,7 +50,7 @@ export default function HooksContentView(props: HooksContentViewProps) {
   }`;
 
   return (
-    <div className="flex flex-col gap-6 pb-20 items-start h-fit overflow-y-auto flex-1">
+    <div className="flex flex-col gap-10 pb-20 items-start h-fit overflow-y-auto flex-1">
       <h1>{registryItem.title}</h1>
       <section className="flex flex-col gap-10 w-full h-fit mb-[70%]">
         <ContentSection id="description" title="Description">

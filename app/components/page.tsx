@@ -100,6 +100,12 @@ export default function ComponentsPage() {
             onClick={(e) => handleSectionClick(e, "installation")}
           />
           <SectionTile
+            label="Dependencies"
+            href="#dependencies"
+            active={activeSection === "dependencies"}
+            onClick={(e) => handleSectionClick(e, "dependencies")}
+          />
+          <SectionTile
             label="Destination"
             href="#destination"
             active={activeSection === "destination"}
