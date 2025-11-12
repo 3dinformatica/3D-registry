@@ -46,7 +46,7 @@ export default function UtilityContentView(props: UtilityContentViewProps) {
   const installationCmd = `pnpm dlx shadcn@latest add ${
     process.env.NODE_ENV === "development"
       ? `http://localhost:3000/r/${registryItem.name}.json`
-      : `https://3dinformatica.github.io/registry/r/${registryItem.name}.json`
+      : `${registry}/r/${registryItem.name}.json`
   }`;
 
   // Extract the code content

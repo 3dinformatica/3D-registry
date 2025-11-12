@@ -78,7 +78,7 @@ export default function ComponentContentView(props: ContentViewProps) {
   const installationCmd = `pnpm dlx shadcn@latest add ${
     process.env.NODE_ENV === "development"
       ? `http://localhost:3000/r/${name}.json`
-      : `https://3dinformatica.github.io/3D-registry/r/${name}.json`
+      : `${registry}/r/${name}.json`
   }`;
 
   return (
