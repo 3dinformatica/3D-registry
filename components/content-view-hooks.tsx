@@ -47,7 +47,7 @@ export default function HooksContentView(props: HooksContentViewProps) {
   const installationCmd = `pnpm dlx shadcn@latest add ${
     process.env.NODE_ENV === "development"
       ? `http://localhost:3000/r/${registryItem.name}.json`
-      : `${registry}/r/${registryItem.name}.json`
+      : `${registry.homepage}/r/${registryItem.name}.json`
   }`;
 
   return (

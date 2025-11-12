@@ -47,7 +47,7 @@ export default function ComponentContentView(props: ContentViewProps) {
         const res = await fetch(
           process.env.NODE_ENV === "development"
             ? `/r/${registryItem.name}.json`
-            : `${registry}/r/${registryItem.name}.json`
+            : `${registry.homepage}/r/${registryItem.name}.json`
         );
 
         if (!res.ok) {

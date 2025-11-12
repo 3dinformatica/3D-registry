@@ -23,7 +23,7 @@ export default function UtilityContentView(props: UtilityContentViewProps) {
         const res = await fetch(
           process.env.NODE_ENV === "development"
             ? `/r/${registryItem.name}.json`
-            : `${registry}/r/${registryItem.name}.json`
+            : `${registry.homepage}/r/${registryItem.name}.json`
         );
 
         if (!res.ok) {
@@ -46,7 +46,7 @@ export default function UtilityContentView(props: UtilityContentViewProps) {
   const installationCmd = `pnpm dlx shadcn@latest add ${
     process.env.NODE_ENV === "development"
       ? `http://localhost:3000/r/${registryItem.name}.json`
-      : `${registry}/r/${registryItem.name}.json`
+      : `${registry.homepage}/r/${registryItem.name}.json`
   }`;
 
   // Extract the code content
