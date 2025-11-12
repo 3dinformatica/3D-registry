@@ -45,7 +45,7 @@ export const Searchbar = (props: searchBarProps) => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder={placeholder}
-        className="h-fit rounded-none border-none p-0 focus-visible:outline-none focus-visible:ring-0"
+        className="h-fit rounded-none border-none p-0 focus-visible:outline-none focus-visible:ring-0 shadow-none"
       />
       <Button
         variant="ghost"
