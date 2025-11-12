@@ -6,7 +6,7 @@ import { LibraryItems } from "./lib/lib-items";
 
 const registry: Registry = {
   name: "3D Registry",
-  homepage: "https://3dinformatica.github.io/3D-registry/",
+  homepage: "https://3dinformatica.github.io/3D-registry",
   items: [...UiItems, ...BlockItems, ...HookItems, ...LibraryItems]
 };
 
