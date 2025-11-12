@@ -5,7 +5,6 @@ import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { AppRouteItem } from "@/lib/routes";
-import Image from "next/image";
 
 interface RegistryNavbarProps {
   options: AppRouteItem[];
@@ -16,14 +15,14 @@ export default function RegistryNavbar(props: RegistryNavbarProps) {
   const { className, options } = props;
   const pathname = usePathname();
 
-  const iconSrc = process.env.NODE_ENV === "development" ? "/3d-logo.png" : "/3d-registry/3d-logo.png";
+  const iconSrc = "/3d-logo.png";
 
   return (
     <nav
       className={cn("flex items-center px-6 py-4 bg-accent w-full", className)}
     >
       <Link href="/" className="flex items-center gap-2 cursor-pointer">
-      <Image src={iconSrc} alt="3D Registry" width={40} height={40} />
+      <img src={iconSrc} alt="3D Registry" width={40} height={40} className="object-contain" />
         <h2>3D Registry</h2>
       </Link>
       <div className="flex items-center gap-3 ml-10">
