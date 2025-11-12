@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "3D Informatica UI Registry",
   description: "3D Informatica UI Registry",
   icons: {
-    icon: "/registry/favicon.ico",
+    icon: "/3d-registry/favicon.ico",
   },
 };
 
