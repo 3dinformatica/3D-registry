@@ -5,6 +5,7 @@ import CopyButton from "./button-copy";
 import ContentSection from "./content-view-section";
 import { useState, useEffect } from "react";
 import React from "react";
+import registry from "@/registry";
 
 interface HooksContentViewProps {
   registryItem: RegistryItem | null;
@@ -22,7 +23,7 @@ export default function HooksContentView(props: HooksContentViewProps) {
         const res = await fetch(
           process.env.NODE_ENV === "development"
             ? `/r/${registryItem.name}.json`
-            : `https://3dinformatica.github.io/registry/r/${registryItem.name}.json`
+            : `https://3dinformatica.github.io/3D-registry/r/${registryItem.name}.json`
         );
 
         if (!res.ok) {
@@ -46,7 +47,7 @@ export default function HooksContentView(props: HooksContentViewProps) {
   const installationCmd = `pnpm dlx shadcn@latest add ${
     process.env.NODE_ENV === "development"
       ? `http://localhost:3000/r/${registryItem.name}.json`
-      : `https://3dinformatica.github.io/registry/r/${registryItem.name}.json`
+      : `${registry}/r/${registryItem.name}.json`
   }`;
 
   return (

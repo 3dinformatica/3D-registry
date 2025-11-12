@@ -5,6 +5,7 @@ import CopyButton from "./button-copy";
 import ContentSection from "./content-view-section";
 import { useState, useEffect } from "react";
 import React from "react";
+import registry from "@/registry";
 
 interface UtilityContentViewProps {
   registryItem: RegistryItem | null;
@@ -22,7 +23,7 @@ export default function UtilityContentView(props: UtilityContentViewProps) {
         const res = await fetch(
           process.env.NODE_ENV === "development"
             ? `/r/${registryItem.name}.json`
-            : `https://3dinformatica.github.io/registry/r/${registryItem.name}.json`
+            : `${registry}/r/${registryItem.name}.json`
         );
 
         if (!res.ok) {

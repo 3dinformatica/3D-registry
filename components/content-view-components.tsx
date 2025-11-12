@@ -7,6 +7,7 @@ import { useMemo, useState, useEffect } from "react";
 import { uiDynamicImports, blockDynamicImports } from "@/lib/import-management";
 import ContentSection from "./content-view-section";
 import { ExampleContainer } from "@/registry/ui/icon-boolean/icon-boolean.examples";
+import registry from "@/registry";
 
 interface ContentViewProps {
   registryItem: RegistryItem | null;
@@ -14,6 +15,7 @@ interface ContentViewProps {
 
 export default function ComponentContentView(props: ContentViewProps) {
   const { registryItem } = props;
+
   const [fileContent, setFileContent] = useState<RegistryItemFile | null>(null);
   const [examples, setExamples] = useState<ExampleContainer[] | null>(null);
 
@@ -45,7 +47,7 @@ export default function ComponentContentView(props: ContentViewProps) {
         const res = await fetch(
           process.env.NODE_ENV === "development"
             ? `/r/${registryItem.name}.json`
-            : `https://3dinformatica.github.io/registry/r/${registryItem.name}.json`
+            : `${registry}/r/${registryItem.name}.json`
         );
 
         if (!res.ok) {
@@ -76,7 +78,7 @@ export default function ComponentContentView(props: ContentViewProps) {
   const installationCmd = `pnpm dlx shadcn@latest add ${
     process.env.NODE_ENV === "development"
       ? `http://localhost:3000/r/${name}.json`
-      : `https://3dinformatica.github.io/registry/r/${name}.json`
+      : `https://3dinformatica.github.io/3D-registry/r/${name}.json`
   }`;
 
   return (
@@ -101,11 +103,13 @@ export default function ComponentContentView(props: ContentViewProps) {
         </ContentSection>
         <ContentSection id="dependencies" title="Dependencies">
           <div className="flex flex-wrap gap-2">
-            {dependencies && dependencies.length > 0 ? dependencies.map((dep) => (
-              <pre key={dep} className="bg-accent rounded-md px-1 py-0.5">
-                {dep}
-              </pre>
-            )) : (
+            {dependencies && dependencies.length > 0 ? (
+              dependencies.map((dep) => (
+                <pre key={dep} className="bg-accent rounded-md px-1 py-0.5">
+                  {dep}
+                </pre>
+              ))
+            ) : (
               <p className="text-sm text-muted-foreground">
                 No dependencies found
               </p>
@@ -161,7 +165,6 @@ export default function ComponentContentView(props: ContentViewProps) {
             </div>
           )}
         </ContentSection>
-        
       </section>
     </div>
   );
